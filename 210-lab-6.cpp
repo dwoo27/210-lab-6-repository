@@ -1,4 +1,6 @@
 #include <iostream>
+#include<cstdlib> //for atof
+#include<string>
 using namespace std;
 
 void enterArrayData(double*, int);
@@ -14,9 +16,11 @@ int main()
     enterArrayData(arr, SIZE);
     outputArrayData(arr, SIZE);
     cout << "Sum of values: " << sumArray(arr, SIZE);
+
+    delete[] arr; //clear dynamic memory
 }
 
-void enterArrayData(double* arr, int size) {
+void enterArrayData(double* arr, int size) { //takes double user input and poppulates array
     cout << "Data entry for the array: " << endl;
     string buf; 
     
@@ -26,19 +30,21 @@ void enterArrayData(double* arr, int size) {
         cin.ignore(1000, 10);
     }
 
-    cout << "Data entry complete.";
+    cout << "Data entry complete." << endl;
 }
 
-void outputArrayData(double* arr, int size) {
+void outputArrayData(double* arr, int size) { //outputs array
     cout << "Outputting array elements: "; 
 
     for (int i = 0; i < size; i++) {
         cout << *(arr + i) << " ";
     }
+
+    cout << endl;
 }
 
-double sumArray(double* arr, int size) {
-    double sum;
+double sumArray(double* arr, int size) { //traverses array and finds sum 
+    double sum = 0.0;
 
     for (int i = 0; i < size; i++) {
         sum += *(arr + i);
